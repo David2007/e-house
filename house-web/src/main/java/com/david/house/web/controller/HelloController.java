@@ -16,11 +16,13 @@ public class HelloController {
 
     // 返回 freemarker 文件
     @RequestMapping("hello")
-    public String hello(ModelMap modelMap){
+    public String hello(ModelMap modelMap) throws IllegalAccessException {
         List<User> users = userService.getUsers();
         User one = users.get(0);
         modelMap.put("user", one);
-        return "hello";
+        // for the test of custom error handler
+        throw new IllegalAccessException("test");
+        //return "hello";
     }
 
     // 返回 index 文件
